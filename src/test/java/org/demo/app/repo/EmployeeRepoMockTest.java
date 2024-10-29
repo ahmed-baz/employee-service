@@ -41,6 +41,10 @@ class EmployeeRepoMockTest {
     void testSaveEmployee() {
 
         // 1. arrange
+
+        EmployeeRepo repo = Mockito.mock(EmployeeRepo.class);
+
+
         EmployeeEntity employee = EmployeeEntity.builder()
                 .firstName("Ahmed")
                 .lastName("Ali")
@@ -50,8 +54,8 @@ class EmployeeRepoMockTest {
                 .build();
 
         // 2. act
-        when(employeeRepo.save(Mockito.any(EmployeeEntity.class))).thenReturn(employee);
-        EmployeeEntity savedEmployee = employeeRepo.save(employee);
+        when(repo.save(Mockito.any(EmployeeEntity.class))).thenReturn(employee);
+        EmployeeEntity savedEmployee = repo.save(employee);
 
         // 3. assert
         Assertions.assertThat(savedEmployee).isNotNull();

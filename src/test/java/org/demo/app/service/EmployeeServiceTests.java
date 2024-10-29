@@ -27,7 +27,8 @@ import static org.mockito.Mockito.*;
 
 @Log4j2
 @SpringBootTest
-@ExtendWith(SpringExtension.class)
+//@RunWith(SpringRunner.class) [used to enable Spring's testing support in JUnit 4]
+@ExtendWith(SpringExtension.class) // ExtendWith used to enable Spring's testing support in JUnit 5
 class EmployeeServiceTests {
 
     @MockBean
