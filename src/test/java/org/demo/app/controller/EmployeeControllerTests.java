@@ -25,6 +25,8 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -40,7 +42,8 @@ class EmployeeControllerTests {
     private MockMvc mockMvc;
     private EmployeeDto employeeDto;
     private final List<EmployeeDto> employeeDtoList = new ArrayList<>();
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeEach
     public void setup() {
@@ -144,7 +147,8 @@ class EmployeeControllerTests {
                 .email("ahmed.ali@gmail.com")
                 .salary(new BigDecimal(20000))
                 .build();
-        when(employeeService.create(employee)).thenReturn(employee);
+        //when(employeeService.create(employee)).thenReturn(employee);
+        given(employeeService.create(employee)).willAnswer(invocation -> invocation.getArgument(0));
         MockHttpServletRequestBuilder httpServletRequestBuilder = post("/api/v1/employees")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON)
@@ -181,6 +185,7 @@ class EmployeeControllerTests {
     @Test
     @DisplayName("JUnit test for deleting employee")
     void testDeleteEmployeeById() throws Exception {
+        doNothing().when(employeeService).delete(1L);
         mockMvc.perform(delete("/api/v1/employees/{id}", 1L))
                 .andDo(print())
                 .andExpect(jsonPath("$.statusCode", is(HttpStatus.NO_CONTENT.value())));
