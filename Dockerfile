@@ -1,5 +1,5 @@
 FROM openjdk:17-alpine
-LABEL maintainer="ahmismail.c@stc.com.sa"
+LABEL maintainer="developer.baz@gmail.com"
 WORKDIR /usr/local/bin/
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} employee-service.jar
