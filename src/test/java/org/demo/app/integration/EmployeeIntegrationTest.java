@@ -15,7 +15,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
@@ -36,7 +35,8 @@ public class EmployeeIntegrationTest {
 
     private static HttpHeaders headers;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeAll
     public static void init() {
@@ -49,8 +49,6 @@ public class EmployeeIntegrationTest {
     }
 
     @Test
-    @Sql(statements = "insert into employees(id, first_name, last_name, email,salary) values (5666, 'Ahmed','Ali','ahmed.ali.c@stc.com.sa',10000)", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(statements = "delete from employees where id=5666", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void testEmployeesList() {
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<AppResponse<List<EmployeeEntity>>> response = restTemplate.exchange(
