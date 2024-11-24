@@ -26,14 +26,14 @@ class EmployeeRepoMockTest {
         EmployeeEntity employee = EmployeeEntity.builder()
                 .firstName("Ahmed")
                 .lastName("Ali")
-                .email("ahmed.ali.c@stc.com.sa")
+                .email("ahmed.ali@tesla.com")
                 .salary(new BigDecimal(10000))
                 .joinDate(new Date())
                 .build();
 
 
         when(employeeRepo.findByEmail(Mockito.any(String.class))).thenReturn(Optional.of(employee));
-        Optional<EmployeeEntity> employeeEntity = employeeRepo.findByEmail("ahmed.ali.c@stc.com.sa");
+        Optional<EmployeeEntity> employeeEntity = employeeRepo.findByEmail("ahmed.ali@tesla.com");
         Assertions.assertThat(employeeEntity.isPresent()).isTrue();
     }
 
@@ -48,7 +48,7 @@ class EmployeeRepoMockTest {
         EmployeeEntity employee = EmployeeEntity.builder()
                 .firstName("Ahmed")
                 .lastName("Ali")
-                .email("ahmed.ali.c@stc.com.sa")
+                .email("ahmed.ali@tesla.com")
                 .salary(new BigDecimal(10000))
                 .joinDate(new Date())
                 .build();
@@ -59,7 +59,7 @@ class EmployeeRepoMockTest {
 
         // 3. assert
         Assertions.assertThat(savedEmployee).isNotNull();
-        Assertions.assertThat(savedEmployee.getEmail()).isEqualTo("ahmed.ali.c@stc.com.sa");
+        Assertions.assertThat(savedEmployee.getEmail()).isEqualTo("ahmed.ali@tesla.com");
 
     }
 
