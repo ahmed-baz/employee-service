@@ -17,7 +17,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: build with Maven
-        run: ./mvnw clean compile
+        run: mvn clean compile
 
   run_test:
     name: running the unit test
@@ -42,7 +42,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: running the unit test
-        run: ./mvnw clean test
+        run: mvn clean test
   
   build:
     name: build the package
@@ -57,7 +57,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: build with Maven
-        run: ./mvnw clean package
+        run: mvn clean package
   
   prepare_image:
     name: build the docker image, and push it to the Docker Hub
