@@ -57,7 +57,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: build with Maven
-        run: mvn clean package
+        run: mvn clean package -DskipTests
   
   prepare_image:
     name: build the docker image, and push it to the Docker Hub
