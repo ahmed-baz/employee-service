@@ -73,7 +73,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: build and push the image to Docker Hub
-        uses: docker/build-push-action@v3
+        uses: mr-smithers-excellent/docker-build-push@v4
         with:
           context: .
           file: ./Dockerfile
