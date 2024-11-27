@@ -75,7 +75,7 @@ jobs:
       - name: build and push the image to Docker Hub
         uses: mr-smithers-excellent/docker-build-push@v4
         with:
-          context: .
+          context: ../../ .
           file: ./Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
