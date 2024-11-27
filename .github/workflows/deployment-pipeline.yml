@@ -80,7 +80,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           image: ${{ secrets.DOCKER_USERNAME }}/employee-service
-          tags: 1.4,latest
+          tags: latest
           platforms: linux/amd64
           registry: docker.io
           push: true
