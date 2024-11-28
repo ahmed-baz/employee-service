@@ -79,7 +79,7 @@ jobs:
           file: ./Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          image: ${{ secrets.DOCKER_USERNAME }}/employee-service
+          image: ahmedbaz/employee-service
           tags: latest
           platforms: linux/amd64
           registry: docker.io
@@ -90,8 +90,8 @@ jobs:
     runs-on: [ self-hosted ]
     steps:
       - name: pull image from docker hub
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/employee-service:latest
+        run: docker pull ahmedbaz/employee-service:latest
       - name: delete the old container
         run: docker rm -f employee-service
       - name: run the docker container
-        run: docker run -d -e ACTIVE_PROFILE=prod -p 2222:2222 --name employee-service ${{ secrets.DOCKER_USERNAME }}/employee-service:latest
+        run: docker run -d -e ACTIVE_PROFILE=prod -p 2222:2222 --name employee-service ahmedbaz/employee-service:latest
