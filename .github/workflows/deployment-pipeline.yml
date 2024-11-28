@@ -87,7 +87,7 @@ jobs:
   deploy:
     name: deploy the image on EC2
     needs: [ prepare_image ]
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted ]
     steps:
       - name: pull image from docker hub
         run: docker pull ahmedbaz/employee-service:latest
