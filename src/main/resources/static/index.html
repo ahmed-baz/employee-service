@@ -1,73 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Service</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee CRUD - Spring Boot</title>
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #00b4db, #0083b0);
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding-top: 40px;
         }
 
         .container {
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 30px;
+            max-width: 960px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #fffae6;
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        p {
-            font-size: 1.2em;
-            line-height: 1.5;
-            margin-bottom: 20px;
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2b3a42;
         }
 
-        .highlight {
-            color: #ffd700;
-            font-weight: bold;
+        .content {
+            margin-top: 30px;
         }
 
-        .button {
-            background-color: #ffd700;
-            color: #0083b0;
-            font-size: 1.1em;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
         }
 
-        .button:hover {
-            background-color: #fffae6;
+        .badge {
+            font-size: 1rem;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
         }
     </style>
 </head>
-<body>
 
+<body>
 <div class="container">
-    <h1>Welcome to Employee Service</h1>
-    <p>
-        <span class="highlight">Employee Service</span> is a Spring Boot project that includes
-        REST APIs, Unit Testing, Integration Testing, and CI/CD using GitHub Actions.
-    </p>
-    <button class="button" onclick="alert('You clicked the button!')">Learn More</button>
+    <div class="header">
+        <h1>Employee CRUD Application</h1>
+        <p>A modern Spring Boot CRUD application for managing employee records</p>
+    </div>
+
+    <div class="content">
+        <h2>Project Overview</h2>
+        <p>
+            This project is a simple Spring Boot application that allows you to perform CRUD operations (Create, Read,
+            Update, Delete) on employee records stored in a PostgreSQL database. The application also includes unit and
+            integration tests, Docker setup, and a continuous integration pipeline via GitHub Actions for deployment to
+            AWS EC2.
+        </p>
+
+        <h2>Technologies Used</h2>
+        <ul>
+            <li><span class="badge bg-primary">Spring Boot</span> - Backend framework</li>
+            <li><span class="badge bg-success">PostgreSQL</span> - Database</li>
+            <li><span class="badge bg-info">Docker</span> - Containerization</li>
+            <li><span class="badge bg-danger">GitHub Actions</span> - CI/CD pipeline</li>
+            <li><span class="badge bg-warning">JUnit</span> - Unit and Integration Testing</li>
+            <li><span class="badge bg-dark">AWS EC2</span> - Cloud Deployment</li>
+        </ul>
+
+        <h2>How to Run</h2>
+        <p>
+            To run this project locally, follow these steps:
+        </p>
+        <ol>
+            <li>Clone the repository: <code>git clone https://github.com/ahmed-baz/employee-service.git</code></li>
+            <li>Navigate to the project folder: <code>cd employee-service</code></li>
+            <li>Set up the PostgreSQL database with Docker (check docker-compose.yml for details)</li>
+            <li>Build the application: <code>./mvnw clean install</code></li>
+            <li>Run the application: <code>./mvnw spring-boot:run</code></li>
+        </ol>
+
+        <h2>CI/CD and Deployment</h2>
+        <p>
+            The project is deployed to <b>AWS EC2</b> via a CI/CD pipeline configured using <b>GitHub Actions</b>. Every
+            push
+            to the <b>master</b> branch triggers the pipeline, which builds and tests the application, prepare a docker
+            image, push it docker hub and deploys
+            it to an
+            EC2 instance for production use.
+        </p>
+
+        <h2>Access the Application</h2>
+        <p>Once the application is running, open your browser and go to <code>http://localhost:8080</code> or access it
+            through the deployed AWS EC2 instance URL.</p>
+
+        <div class="footer">
+            <p>&copy; 2024 Employee CRUD Application</p>
+            <p>View the source code on <a href="https://github.com/ahmed-baz/employee-service"
+                                          target="_blank">GitHub</a></p>
+        </div>
+    </div>
 </div>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

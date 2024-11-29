@@ -2,7 +2,7 @@ name: CI/CD pipeline to build/test and deploy employee-service on AWS EC2
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   compile:
