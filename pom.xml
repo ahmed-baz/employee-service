@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.demo.app</groupId>
     <artifactId>employee-service</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
     <name>employee-service</name>
     <description>employee-service</description>
     <packaging>war</packaging>     
