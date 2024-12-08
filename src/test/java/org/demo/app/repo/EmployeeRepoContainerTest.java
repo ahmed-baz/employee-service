@@ -5,11 +5,9 @@ import org.assertj.core.api.Assertions;
 import org.demo.app.model.EmployeeEntity;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -20,7 +18,6 @@ import java.util.Optional;
 
 @Testcontainers
 @SpringBootTest
-@RunWith(SpringRunner.class)
 class EmployeeRepoContainerTest {
 
     @Container
