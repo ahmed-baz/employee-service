@@ -145,12 +145,16 @@ class EmployeeControllerTests {
     @Test
     @DisplayName("JUnit test for creating new employee")
     void testCreateEmployee() throws Exception {
+
+        // 1. arrange
         EmployeeDto employee = EmployeeDto.builder()
                 .firstName("Ahmed")
                 .lastName("Ali")
                 .email("ahmed.ali@gmail.com")
                 .salary(new BigDecimal(20000))
                 .build();
+
+        // 2. act
         //when(employeeService.create(employee)).thenReturn(employee);
         given(employeeService.create(employee)).willAnswer(invocation -> invocation.getArgument(0));
         MockHttpServletRequestBuilder httpServletRequestBuilder = post("/api/v1/employees")
@@ -158,6 +162,7 @@ class EmployeeControllerTests {
                 .accept(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(employee));
 
+        // 3. assert
         mockMvc.perform(httpServletRequestBuilder)
                 .andDo(print())
                 .andExpect(jsonPath("$.statusCode", is(HttpStatus.CREATED.value())))
