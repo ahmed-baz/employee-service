@@ -27,7 +27,14 @@ public class EmployeeIntegrationTest {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest")
+            .withDatabaseName("test")
+            .withUsername("demo")
+            .withPassword("P@ssw0rd");
+
+    static {
+        postgres.start();
+    }
 
     @LocalServerPort
     private int port;
