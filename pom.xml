@@ -13,7 +13,7 @@
     <version>1.5</version>
     <name>employee-service</name>
     <description>employee-service</description>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <properties>
         <java.version>17</java.version>
         <lombok.version>1.18.24</lombok.version>
