@@ -13,7 +13,11 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -26,10 +30,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @Log4j2
+@Testcontainers
 @SpringBootTest
 @RunWith(SpringRunner.class) //[used to enable Spring's testing support in JUnit 4]
 //@ExtendWith(SpringExtension.class) // ExtendWith used to enable Spring's testing support in JUnit 5
 class EmployeeServiceTests {
+
+    @Container
+    @ServiceConnection
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest");
 
     @MockBean
     private EmployeeRepo employeeRepo;
