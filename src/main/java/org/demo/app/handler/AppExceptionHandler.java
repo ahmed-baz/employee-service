@@ -16,23 +16,22 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
         AppResponse<Void> appResponse = AppResponse.status(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
-        return new ResponseEntity<>(appResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(appResponse, HttpStatus.OK);
     }
 
     @ExceptionHandler(EmployeeNotFoundException.class)
     public ResponseEntity<Object> handleEmployeeNotFoundException(EmployeeNotFoundException ex, WebRequest request) {
         AppResponse<Void> appResponse = AppResponse.status(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
-        return new ResponseEntity<>(appResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(appResponse, HttpStatus.OK);
     }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         AppResponse<Void> appResponse = AppResponse.status(HttpStatus.BAD_REQUEST.value(), ex.getFieldError().getDefaultMessage());
-        return new ResponseEntity<>(appResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(appResponse, HttpStatus.OK);
     }
 
 }
