@@ -2,12 +2,13 @@ package org.demo.app.service;
 
 import org.demo.app.dto.EmployeeDto;
 
+import java.io.IOException;
 import java.util.List;
 
 
 public interface EmployeeService {
 
-    List<EmployeeDto> createRandomList(int size);
+    void createRandomList(int size);
 
     List<EmployeeDto> findList();
 
