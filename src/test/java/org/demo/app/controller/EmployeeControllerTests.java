@@ -84,7 +84,7 @@ class EmployeeControllerTests {
     @Test
     @DisplayName("JUnit test for creating dummy employee list")
     void testCreateEmployeeList() throws Exception {
-        when(employeeService.createRandomList(employeeDtoList.size())).thenReturn(employeeDtoList);
+        //when(employeeService.createRandomList(employeeDtoList.size())).thenReturn(employeeDtoList);
         mockMvc.perform(
                         get("/api/v1/employees/create/{size}", employeeDtoList.size())
                                 .accept(MediaType.APPLICATION_JSON)

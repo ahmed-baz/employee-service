@@ -23,10 +23,10 @@ public class EmployeeController {
         return AppResponse.ok(list);
     }
 
-    @GetMapping(value = "/create/{size}")
+    @PostMapping(value = "/create/{size}")
     public AppResponse<List<EmployeeDto>> createRandomList(@PathVariable int size) {
-        List<EmployeeDto> randomList = employeeService.createRandomList(size);
-        return AppResponse.created(randomList);
+        employeeService.createRandomList(size);
+        return AppResponse.created(null);
     }
 
     @GetMapping("/{id}")

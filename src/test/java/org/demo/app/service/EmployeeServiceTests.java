@@ -123,7 +123,8 @@ class EmployeeServiceTests {
     @DisplayName("JUnit test to create dummy employees list")
     void testCreateEmployeeList() {
         when(employeeRepo.findAll()).thenReturn(Collections.singletonList(employeeEntity));
-        List<EmployeeDto> list = employeeService.createRandomList(1);
+        employeeService.createRandomList(1);
+        List<EmployeeEntity> list = employeeRepo.findAll();
         assertNotNull(list);
         assertEquals(1, list.size());
     }

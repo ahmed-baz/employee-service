@@ -11,6 +11,7 @@ import org.demo.app.service.EmployeeService;
 import org.demo.app.util.EmployeeUtil;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,13 +22,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepo employeeRepo;
     private final EmployeeMapper employeeMapper;
+    private final EmployeeServiceDummy employeeServiceDummy;
+    private boolean throwException = true;
 
     @Override
-    public List<EmployeeDto> createRandomList(int size) {
+    @Async
+    public void createRandomList(int size) {
         List<EmployeeDto> employeeDtoList = EmployeeUtil.getEmployeeDtoList(size);
         List<EmployeeEntity> employeeEntities = employeeMapper.dtoListToEntityList(employeeDtoList);
         employeeRepo.saveAll(employeeEntities);
-        return employeeMapper.entityListToDtoList(employeeEntities);
     }
 
     @Override
@@ -51,8 +54,25 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public EmployeeDto create(EmployeeDto employeeDto) {
-        return employeeMapper.entityToDto(employeeRepo.save(employeeMapper.dtoToEntity(employeeDto)));
+        create();
+        employeeServiceDummy.create();
+        EmployeeDto newEmployeeDto = employeeMapper.entityToDto(employeeRepo.save(employeeMapper.dtoToEntity(employeeDto)));
+        if (throwException) throw new RuntimeException();
+        return newEmployeeDto;
+    }
+
+    private void create() {
+        EmployeeDto employeeDto = EmployeeUtil.createRandomEmployeeDto();
+        EmployeeEntity employee = EmployeeEntity.builder()
+                .firstName("user trx 1")
+                .lastName(employeeDto.getLastName())
+                .email(employeeDto.getEmail())
+                .salary(employeeDto.getSalary())
+                .joinDate(employeeDto.getJoinDate())
+                .build();
+        employeeRepo.save(employee);
     }
 
     @Override
