@@ -14,7 +14,13 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "employees")
+@Table(
+        name = "employees",
+        indexes = {
+                @Index(name = "idx_email", columnList = "email"),
+                @Index(name = "idx_name", columnList = "firstName,lastName")
+        }
+)
 public class EmployeeEntity {
 
     @Id
