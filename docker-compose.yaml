@@ -18,7 +18,7 @@ services:
 
   employee-service:
     container_name: employee-service
-    image: ahmedbaz/employee-service:1.4
+    image: ahmedbaz/employee-service:latest
     ports:
       - "2222:2222"
     depends_on:

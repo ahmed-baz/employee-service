@@ -5,7 +5,7 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn package -DskipTests
 
-FROM openjdk:17-alpine AS runtime
+FROM eclipse-temurin:17-jdk-alpine AS runtime
 LABEL maintainer="developer.baz@gmail.com"
 WORKDIR /app
 
