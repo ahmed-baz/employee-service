@@ -22,8 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepo employeeRepo;
     private final EmployeeMapper employeeMapper;
-    private final EmployeeServiceDummy employeeServiceDummy;
-    private boolean throwException = false;
 
     @Override
     @Async
@@ -56,23 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public EmployeeDto create(EmployeeDto employeeDto) {
-        create();
-        employeeServiceDummy.create();
-        EmployeeDto newEmployeeDto = employeeMapper.entityToDto(employeeRepo.save(employeeMapper.dtoToEntity(employeeDto)));
-        if (throwException) throw new RuntimeException();
-        return newEmployeeDto;
-    }
-
-    private void create() {
-        EmployeeDto employeeDto = EmployeeUtil.createRandomEmployeeDto();
-        EmployeeEntity employee = EmployeeEntity.builder()
-                .firstName("user trx 1")
-                .lastName(employeeDto.getLastName())
-                .email(employeeDto.getEmail())
-                .salary(employeeDto.getSalary())
-                .joinDate(employeeDto.getJoinDate())
-                .build();
-        employeeRepo.save(employee);
+        return employeeMapper.entityToDto(employeeRepo.save(employeeMapper.dtoToEntity(employeeDto)));
     }
 
     @Override
